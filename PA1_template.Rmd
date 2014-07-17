@@ -254,8 +254,11 @@ add_data <- isWeekday(new_data$date)
 new_data <- as.data.frame(cbind(new_data, add_data));
 colnames(new_data) <- c("steps", "date", "interval", "weekday");
 
+
 weekday_profile <- sapply(intervals, function(x) mean(weekday_set$steps[weekday_set$interval ==x], na.rm = TRUE));
 weekend_profile <- sapply(intervals, function(x) mean(weekend_set$steps[weekend_set$interval ==x], na.rm = TRUE));
+
+merge(weekend_profile, weekday_profile, by = interval);
 
 plot(weekend_profile ~ intervals, type = 'l', lwd = 2, xlab = "", ylab = "", main = "", xaxt = 'n', yaxt = 'n');
 title(main = "Weekends");
