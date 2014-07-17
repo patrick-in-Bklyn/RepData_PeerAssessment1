@@ -6,11 +6,50 @@ Total Daily Activity
 This personal monitoring device measured the number steps an individual takes at five minute intervals. The sample data was collected over a two month period between October and November of 2012. 
 
 ```{r}
-if (!exists("activity.csv")){
-files <- unzip("./RepData_PeerAssessment1/activity.zip", exdir = ".");
+url <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip"
+url_split <- unlist(strsplit(url, "%2F"))
+zip_file <- url_split[length(url_split)]
+zip_dir <- unlist(strsplit(zip_file, "\\."))[1];
+
+check_files <- function(address = url, wnt = zip_file, dir = zip_dir)
+{
+if (wnt %in% list.files(".") && length(list.files(paste(".", dir, sep = "/", collapse = "/"))) > 0)
+        
+        {
+        print(paste("files already downloaded and are:", dir(paste(".", dir, sep = "/", collapse = ""))))
+        }
+else
+        {        
+        if (!wnt %in% list.files("."))
+                {
+                download.file(address, destfile = wnt, method = "curl")
+                }
+        if(!exists(paste(".", dir, sep = "/", collapse = "/")))
+                {
+                dir.create(paste(".", dir, sep = "/", collapse = "/"), showWarnings = FALSE, mode = "0757")
+                tgt_dir <- paste(".", dir, sep = "/", collapse = "/")
+                }
+        if(length(list.files(tgt_dir)) == 0)
+                {
+                tgt_files  <- unzip(wnt, exdir = tgt_dir, overwrite = TRUE);
+
+                }
+
+        }
+
 }
 
-file <- read.csv("activity.csv", header = TRUE, nrows = -1, );
+load_data <- function(dir, number)
+        {
+        tgt <- paste(".", dir, sep = "/", collapse = "/");        
+        x <- read.csv(list.files(tgt)[number]);
+
+        return(x);
+        }
+
+check_files();
+file <- read.csv("./activity/activity.csv")
+file$date <- as.Date(file$date);
 
 ```
 
@@ -254,11 +293,8 @@ add_data <- isWeekday(new_data$date)
 new_data <- as.data.frame(cbind(new_data, add_data));
 colnames(new_data) <- c("steps", "date", "interval", "weekday");
 
-
 weekday_profile <- sapply(intervals, function(x) mean(weekday_set$steps[weekday_set$interval ==x], na.rm = TRUE));
 weekend_profile <- sapply(intervals, function(x) mean(weekend_set$steps[weekend_set$interval ==x], na.rm = TRUE));
-
-merge(weekend_profile, weekday_profile, by = interval);
 
 plot(weekend_profile ~ intervals, type = 'l', lwd = 2, xlab = "", ylab = "", main = "", xaxt = 'n', yaxt = 'n');
 title(main = "Weekends");
