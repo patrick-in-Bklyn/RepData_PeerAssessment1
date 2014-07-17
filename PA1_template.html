@@ -59,7 +59,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div id="total-daily-activity" class="section level1">
 <h1>Total Daily Activity</h1>
 <p>This personal monitoring device measured the number steps an individual takes at five minute intervals. The sample data was collected over a two month period between October and November of 2012.</p>
-<pre class="r"><code>url &lt;- &quot;https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip&quot;
+<pre class="r"><code>setwd(&quot;.&quot;);
+url &lt;- &quot;https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip&quot;
 url_split &lt;- unlist(strsplit(url, &quot;%2F&quot;))
 zip_file &lt;- url_split[length(url_split)]
 zip_dir &lt;- unlist(strsplit(zip_file, &quot;\\.&quot;))[1];

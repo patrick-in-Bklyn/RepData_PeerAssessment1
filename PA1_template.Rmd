@@ -6,6 +6,7 @@ Total Daily Activity
 This personal monitoring device measured the number steps an individual takes at five minute intervals. The sample data was collected over a two month period between October and November of 2012. 
 
 ```{r}
+setwd(".");
 url <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip"
 url_split <- unlist(strsplit(url, "%2F"))
 zip_file <- url_split[length(url_split)]
