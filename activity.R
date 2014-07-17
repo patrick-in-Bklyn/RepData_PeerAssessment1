@@ -3,12 +3,51 @@
 
 ### open the file and look at it
 library(timeDate)
-if (!exists("activity.csv")){
-files <- unzip("./RepData_PeerAssessment1/activity.zip", exdir = ".");
+url <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip"
+url_split <- unlist(strsplit(url, "%2F"))
+zip_file <- url_split[length(url_split)]
+zip_dir <- unlist(strsplit(zip_file, "\\."))[1];
+
+check_files <- function(address = url, wnt = zip_file, dir = zip_dir)
+{
+        if (wnt %in% list.files(".") && length(list.files(paste(".", dir, sep = "/", collapse = "/"))) > 0)
+                
+        {
+                print(paste("files already downloaded and are:", dir(paste(".", dir, sep = "/", collapse = ""))))
+        }
+        else
+        {        
+                if (!wnt %in% list.files("."))
+                {
+                        download.file(address, destfile = wnt, method = "curl")
+                }
+                if(!exists(paste(".", dir, sep = "/", collapse = "/")))
+                {
+                        dir.create(paste(".", dir, sep = "/", collapse = "/"), showWarnings = FALSE, mode = "0757")
+                        tgt_dir <- paste(".", dir, sep = "/", collapse = "/")
+                }
+                if(length(list.files(tgt_dir)) == 0)
+                {
+                        tgt_files  <- unzip(wnt, exdir = tgt_dir, overwrite = TRUE);
+                        
+                }
+                
+        }
+        
 }
 
-file <- read.csv("activity.csv", header = TRUE, nrows = -1, );
+load_data <- function(dir, number)
+{
+        tgt <- paste(".", dir, sep = "/", collapse = "/");        
+        x <- read.csv(list.files(tgt)[number]);
+        
+        return(x);
+}
+
+check_files();
+file <- read.csv("./activity/activity.csv")
 file$date <- as.Date(file$date);
+
 
 dates <- unique(file$date);
 dates <- as.Date(dates);
