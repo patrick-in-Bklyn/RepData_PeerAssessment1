@@ -7,6 +7,7 @@ This personal monitoring device measured the number steps an individual takes at
 
 
 ```r
+setwd(".");
 url <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip"
 url_split <- unlist(strsplit(url, "%2F"))
 zip_file <- url_split[length(url_split)]
@@ -57,7 +58,7 @@ file <- read.csv("./activity/activity.csv")
 ```
 
 ```r
-file <- read.csv("activity.csv", header = TRUE, nrows = -1, );
+file <- read.csv("activity/activity.csv", header = TRUE, nrows = -1, );
 ```
 
 ```
