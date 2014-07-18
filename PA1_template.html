@@ -101,9 +101,8 @@ load_data &lt;- function(dir, number)
         return(x);
         }
 
-check_files();</code></pre>
-<pre><code>## Warning: download had nonzero exit status</code></pre>
-<pre class="r"><code>file &lt;- read.csv(&quot;./activity/activity.csv&quot;)
+check_files();
+file &lt;- read.csv(&quot;./activity/activity.csv&quot;)
 file$date &lt;- as.Date(file$date);</code></pre>
 <p>I subset the data to generate plots of the total daily activity and activity by time period. First, I created vectors of dates and then the intervals. and I used these to calculate the daily total setps in the</p>
 <pre class="r"><code>file$date &lt;- as.Date(file$date);
