@@ -32,7 +32,7 @@ else
                 }
         if(length(list.files(tgt_dir)) == 0)
                 {
-                tgt_files  <- unzip(wnt, exdir = tgt_dir, overwrite = TRUE);
+                tgt_files  <- unzip(wnt, exdir = ".", overwrite = TRUE);
 
                 }
 
