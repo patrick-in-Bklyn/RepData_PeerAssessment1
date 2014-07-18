@@ -315,10 +315,10 @@ print(c(&quot;The max activity occurs at interval &quot;, intervals[max_index]))
 ## [2] &quot;835&quot;
 </code></pre>
 
-<pre><code class="r">print(c(&quot;the average maximum number of steps taken in a five minute interval is &quot;, round(max, 0))); 
+<pre><code class="r">print(c(&quot;The average maximum number of steps taken in a five minute interval is &quot;, round(max, 0))); 
 </code></pre>
 
-<pre><code>## [1] &quot;the average maximum number of steps taken in a five minute interval is &quot;
+<pre><code>## [1] &quot;The average maximum number of steps taken in a five minute interval is &quot;
 ## [2] &quot;206&quot;
 </code></pre>
 
@@ -369,7 +369,7 @@ legend(&quot;topleft&quot;, c(&quot;Weekday&quot;, &quot;Weekend&quot;), lty = c
 
 <h1>Imputing Missing Values</h1>
 
-<p>Given the variability in data, and assuming a workweek &ldquo;routine&rdquo;, I filled in missing data by taking the mean activity for each five minute period for each day of the week. I then added these data to the day according the day of the week and the period in which data was missing. </p>
+<p>Given the variability in data, and assuming a workweek &ldquo;routine&rdquo;, I filled in missing data by taking the mean period activity for each each day of the week. I then added these data to the day according the day for which data was missing. </p>
 
 <pre><code class="r">new_set &lt;- function(day)
         {

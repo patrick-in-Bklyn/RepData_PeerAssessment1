@@ -141,11 +141,11 @@ print(c("The max activity occurs at interval ", intervals[max_index]));
 ```
 
 ```r
-print(c("the average maximum number of steps taken in a five minute interval is ", round(max, 0))); 
+print(c("The average maximum number of steps taken in a five minute interval is ", round(max, 0))); 
 ```
 
 ```
-## [1] "the average maximum number of steps taken in a five minute interval is "
+## [1] "The average maximum number of steps taken in a five minute interval is "
 ## [2] "206"
 ```
 
@@ -201,7 +201,7 @@ legend("topleft", c("Weekday", "Weekend"), lty = c(1,1), col = c("blue", "red"))
 ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8.png) 
 Imputing Missing Values
 =======================
-Given the variability in data, and assuming a workweek "routine", I filled in missing data by taking the mean activity for each five minute period for each day of the week. I then added these data to the day according the day of the week and the period in which data was missing. 
+Given the variability in data, and assuming a workweek "routine", I filled in missing data by taking the mean period activity for each each day of the week. I then added these data to the day according the day for which data was missing. 
 
 
 ```r
